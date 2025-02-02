@@ -50,7 +50,7 @@ class ArithmeticDAG(TreeDAG):
         # Base case: If depth is 0, generate a leaf node
         if depth == 1:
             name = next(self.name_generator)  # Generate a name
-            value = random.randint(1, 10)  # Randomly select a value ranging from 1 to 10.
+            value = random.randint(1, 1000)  # Randomly select a value ranging from 1 to 1000.
             return Node(value, None, name, [])
 
         # Otherwise, generate an internal node
@@ -330,7 +330,7 @@ class LinearEq:
             coeff_descriptions = []
             
             for _ in range(6 - self.num_dags):
-                value = random.randint(-10, 10)
+                value = random.randint(-1000, 1000)
                 coeff.append((value, value))  # Format: (name, value)
 
             for idx in range(self.num_dags):
@@ -380,9 +380,13 @@ class LinearEq:
     def _solve_linear_eq(self):
         coeff = self.coeff
 
-        A = [[coeff[0][1], coeff[1][1]],
-            [coeff[2][1], coeff[3][1]]]
-        b = [coeff[4][1], coeff[5][1]]
+        # Explicitly cast the coefficient values to float
+        A = np.array([
+            [float(coeff[0][1]), float(coeff[1][1])],
+            [float(coeff[2][1]), float(coeff[3][1])]
+        ], dtype=np.float64)
+    
+        b = np.array([float(coeff[4][1]), float(coeff[5][1])], dtype=np.float64)
 
         solutions = np.linalg.solve(A, b)
         return solutions.tolist()

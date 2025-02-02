@@ -157,7 +157,7 @@ class DyValDataset:
             from .DAG.logic_dag import BoolDAG, BoolDAGDescriber
 
             if dataset_type == "arithmetic":
-                ops = ["+", "-", "*", "/", "sqrt", "**"]
+                ops = ["+", "-", "*", "/"]  # , "sqrt", "**"]
                 uni_ops = ["sqrt", "**"]
                 DAGType, DAGDescriber = ArithmeticDAG, ArithmeticDAGDescriber
 
@@ -171,7 +171,7 @@ class DyValDataset:
 
         elif dataset_type == "linear_equation":
             from .DAG.math_dag import LinearEq
-            ops = ["+", "-", "*", "/", "sqrt", "**"]
+            ops = ["+", "-", "*", "/"]  # , "sqrt", "**"]
             uni_ops = ["sqrt", "**"]
             describer = LinearEq(ops, uni_ops, depth, num_dags, num_children_per_node, extra_links_per_node, add_rand_desc)
 

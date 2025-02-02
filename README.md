@@ -1,3 +1,19 @@
+## Fork info
+This fork is only used to generate synthetic samples with DyVal.
+
+## Installation
+`pip install -e . --config-settings editable_mode=compat`
+
+## Fork modifications
+- Strip requirements.txt for minimal DyVal support
+- Remove "sqrt" and "**" operations from arithmetic and linear equation tasks, since they introduce less complexity when selected.
+- Increase range of random numbers for arithmetic task to randint(1, 1000) (from randint(1, 10))
+- Increase range of random numbers for linear equation task to randint(-1000, 1000) (from randint(-10, 10))
+- Remove <<< answer >>> answer format
+- Remove "Thus, the answer is... " from the end of all solution paths.
+- Fix occasional error in linear equation generation (_solve_linear_eq function).
+- Increase GeneralDAG randint range to randint(1, 1000)
+
 <div id="top"></div>
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion

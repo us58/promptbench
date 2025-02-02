@@ -140,32 +140,32 @@ def process_dyval_training_sample(sample, dataset_type):
                     
     #     sample["descriptions"][order] = problem
 
-    input_text = sample["descriptions"]["topological"]
+    # input_text = sample["descriptions"]["topological"]
     
-    final_response = "\n\nThus, the answer is <<<"
-    answer = sample["answers"]
-    if dataset_type in ["arithmetic", "bool_logic", "deductive_logic"]:
-        var = sample['vars']
-        problem = prompt.format(descriptions=input_text, vars=var)
-        if dataset_type == "arithmetic":
-            final_response += str(round_value(answer)) + ">>>"
-        else:
-            final_response += str(answer) + ">>>"
+    # final_response = "\n\nThus, the answer is "
+    # answer = sample["answers"]
+    # if dataset_type in ["arithmetic", "bool_logic", "deductive_logic"]:
+    #     var = sample['vars']
+    #     problem = prompt.format(descriptions=input_text, vars=var)
+    #     if dataset_type == "arithmetic":
+    #         final_response += str(round_value(answer))
+    #     else:
+    #         final_response += str(answer)
         
-    else:
-        problem = prompt.format(descriptions=input_text)
+    # else:
+    #     problem = prompt.format(descriptions=input_text)
         
-        if dataset_type == "linear_equation":
-            final_response += str(round_value(answer[0])) + " " + str(round_value(answer[1])) + ">>>"
-        elif dataset_type == "max_sum_path":
-            if type(answer) == str:
-                final_response += str(answer) + ">>>"
-            else:
-                final_response += str(round_value(answer)) + ">>>"
-        else:
-            final_response += str(answer) + ">>>"
+    #     if dataset_type == "linear_equation":
+    #         final_response += str(round_value(answer[0])) + " " + str(round_value(answer[1]))
+    #     elif dataset_type == "max_sum_path":
+    #         if type(answer) == str:
+    #             final_response += str(answer)
+    #         else:
+    #             final_response += str(round_value(answer))
+    #     else:
+    #         final_response += str(answer)
 
-    sample["inferences"] = sample["inferences"] + final_response
+    sample["inferences"] = sample["inferences"]  # + final_response
     
     return sample
 

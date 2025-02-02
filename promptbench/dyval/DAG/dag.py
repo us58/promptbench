@@ -145,8 +145,8 @@ class BaseDAG:
         return False
 
     def _generate_name(self):
-        for comb in itertools.product(self.symbols_set, repeat=3):
-            name = ''.join(comb)
+        while True:
+            name = ''.join(random.choice(self.symbols_set) for _ in range(3))
             if name not in self.forbidden_names:
                 yield name
 
@@ -203,7 +203,7 @@ class GeneralDAG(BaseDAG):
         nodes = []
         # Create all nodes first without any links
         for _ in range(num_nodes):
-            new_node = Node(value=random.randint(1, 10), name=next(self.name_generator))
+            new_node = Node(value=random.randint(1, 1000), name=next(self.name_generator))
             nodes.append(new_node)
         
         # Once all nodes are created, iterate and decide links
